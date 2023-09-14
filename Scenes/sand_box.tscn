@@ -51,21 +51,25 @@ environment = SubResource("Environment_1hnxf")
 [node name="Floor" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
 material_override = SubResource("StandardMaterial3D_4apak")
+use_collision = true
 size = Vector3(300, 0.5, 300)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.658055, 0)
 material_override = SubResource("StandardMaterial3D_jvnk8")
+use_collision = true
 size = Vector3(2, 2, 2)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6511, 0.458055, 8.51769)
 material_override = SubResource("StandardMaterial3D_jvnk8")
+use_collision = true
 size = Vector3(1.5, 1.5, 1.5)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
 material_override = SubResource("StandardMaterial3D_6tyqn")
+use_collision = true
 
 [node name="Player" parent="." instance=ExtResource("4_38xml")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.1, 3.25465)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.225433, 3.25465)
