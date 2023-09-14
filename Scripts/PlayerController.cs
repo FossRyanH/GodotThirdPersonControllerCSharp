@@ -5,8 +5,9 @@ public partial class PlayerController : CharacterBody3D
 {
 	Node3D cameraMount;
 	AnimationPlayer animPlayer;
+	Node3D visuals;
 
-	public static float walkSpeed = 3.41f;
+	public static float walkSpeed = 3.1f;
 	public static float sprintSpeed = 9f;
 	public float jumpForce = 4.5f;
 	int jumpCount = 0;
@@ -23,6 +24,7 @@ public partial class PlayerController : CharacterBody3D
 
 		cameraMount = GetNode<Node3D>("CameraMount");
 		animPlayer = GetNode<AnimationPlayer>("Visuals/mixamo_base/AnimationPlayer");
+		visuals = GetNode<Node3D>("Visuals");
 	}
 
 	public override void _Input(InputEvent @event)
@@ -31,6 +33,7 @@ public partial class PlayerController : CharacterBody3D
 		{
 			RotateY(Mathf.DegToRad(-mouseMotion.Relative.X * sensitivity));
 			cameraMount.RotateX(Mathf.DegToRad(-mouseMotion.Relative.Y * sensitivity));
+			visuals.RotateY(Mathf.DegToRad(mouseMotion.Relative.X * sensitivity));
 		}
 	}
 
@@ -74,6 +77,9 @@ public partial class PlayerController : CharacterBody3D
 			{
 				animPlayer.Play("running");
 			}
+
+			visuals.LookAt(Position + direction);
+
 			velocity.X = direction.X * moveSpeed;
 			velocity.Z = direction.Z * moveSpeed;
 		}
