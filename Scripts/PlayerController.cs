@@ -4,6 +4,7 @@ using System;
 public partial class PlayerController : CharacterBody3D
 {
 	Node3D cameraMount;
+	AnimationPlayer animPlayer;
 
 	public static float walkSpeed = 3.41f;
 	public static float sprintSpeed = 9f;
@@ -21,6 +22,7 @@ public partial class PlayerController : CharacterBody3D
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 
 		cameraMount = GetNode<Node3D>("CameraMount");
+		animPlayer = GetNode<AnimationPlayer>("Visuals/mixamo_base/AnimationPlayer");
 	}
 
 	public override void _Input(InputEvent @event)
@@ -64,11 +66,23 @@ public partial class PlayerController : CharacterBody3D
 
 		if (direction != Vector3.Zero)
 		{
+			if (animPlayer.CurrentAnimation != "walking" && moveSpeed != sprintSpeed)
+			{
+				animPlayer.Play("walking");
+			}
+			else if (animPlayer.CurrentAnimation != "running" && moveSpeed == sprintSpeed)
+			{
+				animPlayer.Play("running");
+			}
 			velocity.X = direction.X * moveSpeed;
 			velocity.Z = direction.Z * moveSpeed;
 		}
 		else
 		{
+			if (animPlayer.CurrentAnimation != "idle")
+			{
+				animPlayer.Play("idle");
+			}
 			velocity.X = Mathf.MoveToward(Velocity.X, 0 ,moveSpeed);
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0 ,moveSpeed);
 		}
